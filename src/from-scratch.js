@@ -43,11 +43,8 @@ const makeFilterByLength = (maxLength) => {
 };
 
 const makeGradeTracker = () => {
-  const grades = []
-  return students = {
-    name:
 
-  }
+
 
 
 };
