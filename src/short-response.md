@@ -18,7 +18,7 @@ What are the core principles of encapsulation in object-oriented programming?
 
 ### Response 1
 
-Encapsulation in object-oriented programming is the bundling of data and hiding it so anything outside of the code cannot mess with it. According to MDN, it is described as a **black box**, because you can use it but you cannot touch what's inside.
+Encapsulation in object-oriented programming is the bundling of data and the hiding of implementation details so that anything outside the code cannot interfere with it. According to MDN, it is described as a **black box** because you can use it, but you cannot directly access what's inside.
 
 ---
 
@@ -40,7 +40,7 @@ First, define what a **closure** is in your own words and then explain how this 
 
 ### Response 2
 
-A **closure** is when a **inner function** remembers data so that it may still be used from outside of the code. This lets the function keep private information for later use. However, this code does **NOT** provide an example of a closure because it simply does not remember any data.
+A **closure** is when an **inner function** remembers data so that it can still be used from outside its immediate scope. This allows the function to keep private information for later use. However, this code does **NOT** provide an example of a closure because it does not actually remember any data.
 
 ---
 
@@ -77,12 +77,19 @@ Finally, update the code snippet above to fix it.
 
 ### Response 3
 
-The `this` keyword essentially refers to the object that is using that function. The `makeNoise()` function is not working because according to MDN, arrow functions handle the `this` keyword differently. Arrow functions actually already inherit the keyword from their parent scope. In order to fix the code above, I would refactor it to not be an arrow function and instead use a regular function. I would also add
+The `this` keyword essentially refers to the **object** that is using that **function**. The `makeNoise()` function is not working because, according to MDN, **arrow functions** handle the `this` keyword differently. Arrow functions actually already **inherit** the keyword from their parent scope. In order to fix the code above, I would refactor it to not be an arrow function and instead use a **regular function**. An example of how I would proceed to fix this is shown below:
 
 #### Syntax Fix:
 
 ```js
-makeNoise() {
-  console.log(`${this.name} the ${this.species} says ${sound}`);
+const makeAnimal = (name, species, sound) => {
+  const animal = {
+    name: name,
+    species: species,
+    makeNoise() {
+      console.log(`${this.name} the ${this.species} says ${sound}`);
+    },
+  };
+  return animal;
 };
 ```
