@@ -1,6 +1,7 @@
 # Short Responses
 
 For this short response assignment, aim to write a response with the following qualities (your instructor will give you feedback on these areas):
+
 - [] Addresses all parts of the prompt
 - [] Accurately uses relevant technical terminology
 - [] Is free of grammar and spelling mistakes (double check with grammarly!)
@@ -17,7 +18,7 @@ What are the core principles of encapsulation in object-oriented programming?
 
 ### Response 1
 
-Your response here...
+Encapsulation in object-oriented programming is the bundling of data and the hiding of implementation details so that anything outside the code cannot interfere with it. According to MDN, it is described as a **black box** because you can use it, but you cannot directly access what's inside.
 
 ---
 
@@ -32,14 +33,14 @@ const multiplyNumsBy = (nums, multiplier) => {
   return nums.map((num) => num * multiplier);
 };
 
-const multiplesOfFive = multiplyNumsBy([1,2,3,4], 5); // [5, 10, 15, 20]
+const multiplesOfFive = multiplyNumsBy([1, 2, 3, 4], 5); // [5, 10, 15, 20]
 ```
 
 First, define what a **closure** is in your own words and then explain how this example includes a closure.
 
 ### Response 2
 
-Your response here...
+A **closure** is when an **inner function** remembers data so that it can still be used from outside its immediate scope. This allows the function to keep private information for later use. However, this code does **NOT** provide an example of a closure because it does not actually remember any data.
 
 ---
 
@@ -55,16 +56,16 @@ const makeAnimal = (name, species, sound) => {
     name: name,
     species: species,
     makeNoise: () => {
-      console.log(`${this.name} the ${this.species} says ${sound}`)
-    }
-  }
+      console.log(`${this.name} the ${this.species} says ${sound}`);
+    },
+  };
   return animal;
-}
+};
 
-const betty = makeAnimal('betty', 'cat', 'meow');
+const betty = makeAnimal("betty", "cat", "meow");
 betty.makeNoise(); // undefined the undefined says meow
 
-const bugs = makeAnimal('bugs', 'bunny', 'whatsup doc');
+const bugs = makeAnimal("bugs", "bunny", "whatsup doc");
 bugs.makeNoise(); // undefined the undefined says meow says whatsup doc
 ```
 
@@ -76,4 +77,19 @@ Finally, update the code snippet above to fix it.
 
 ### Response 3
 
-Your response here...
+The `this` keyword essentially refers to the **object** that is using that **function**. The `makeNoise()` function is not working because, according to MDN, **arrow functions** handle the `this` keyword differently. Arrow functions actually already **inherit** the keyword from their parent scope. In order to fix the code above, I would refactor it to not be an arrow function and instead use a **regular function**. An example of how I would proceed to fix this is shown below:
+
+#### Syntax Fix:
+
+```js
+const makeAnimal = (name, species, sound) => {
+  const animal = {
+    name: name,
+    species: species,
+    makeNoise() {
+      console.log(`${this.name} the ${this.species} says ${sound}`);
+    },
+  };
+  return animal;
+};
+```
