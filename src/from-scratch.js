@@ -9,6 +9,7 @@ const makeIdFunc = () => {
 
 const makePasswordChecker = (correctPassword) => {
   let guessTimes = 0;
+
   return (guess) => {
     if (guessTimes === 3) {
       return 'Account locked';
@@ -37,8 +38,7 @@ const makeFilterByLength = (maxLength) => {
 const makeGradeTracker = () => {
   const grades = [];
 
-  return studentGrades = {
-
+  return {
     addGrade(grade) {
       if (grade >= 0 && grade <= 100) {
         grades.push(grade);
@@ -48,7 +48,7 @@ const makeGradeTracker = () => {
     },
     getAverage() {
       if (grades.length === 0) return 0;
-      return grades.reduce((acc, curr) => (acc += curr), 0) / grades.length;
+      return grades.reduce((acc, curr) => acc + curr, 0) / grades.length;
     },
 
   };
@@ -56,7 +56,8 @@ const makeGradeTracker = () => {
 
 const makeShoppingList = () => {
   const items = [];
-  return shoppingList = {
+
+  return {
     getItems() {
       return [...items];
     },
